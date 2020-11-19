@@ -34,7 +34,7 @@ const searchProjects = (searchStr) => {
     // - are in currently displayed segments, AND
     // - are displayed (JRC tax filter applies)
     const blips = document.querySelectorAll(
-        `g.segment:not([style*='scale(0)']) g.blip[style*='display: inherit;'][data-tooltip*=${searchStr} i]`
+        `g.segment:not([style*='scale(0)']) g.blip:not([style*='display: none;'])[data-tooltip*=${searchStr} i]`
     )
     //remove all buttons
     resultDiv.innerHTML = ''
@@ -43,13 +43,22 @@ const searchProjects = (searchStr) => {
         // create a button and add to search result
         const resultBtn = document.createElement('button')
         resultBtn.addEventListener('click', (e) => {
-            // showProjectData()
-            // cw_id, segment, ring, perf
+            // get the project's CW id
+            const cwid = e.target.innerHTML.substring(0, e.target.innerHTML.indexOf('.'))
+            // get the project's blip data
+            const data = document.getElementById(`blip-${cwid}`).dataset
+            showProjectData(
+                cwid,
+                data.segment,
+                data.ring,
+                JSON.parse(data.performance),
+                data.jrcTags
+            )
         })
-        resultBtn.addEventListener('mouseenter', (e) => {
+        resultBtn.addEventListener('mouseenter', () => {
             showBliptip(document.querySelector(`#${blip.id}`))
         })
-        resultBtn.addEventListener('mouseout', (e) => {
+        resultBtn.addEventListener('mouseout', () => {
             hideBliptip()
         })
 
