@@ -1,6 +1,6 @@
 {
     "name": "cw-project-radar",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "description": "A re-implementation of the ThoughtWorks Technology Radar using express, webpack, MongoDB and many other goodies.",
     "main": "server.js",
     "scripts": {
@@ -15,7 +15,7 @@
         "dev": "cp .env.dev .env && nodemon src/server/server.js",
         "dev:watch:pug": "pug -O '{module: true}' -c -w --name-after-file -o src/client/views src/client/views",
         "dev:watch:js": "parcel watch src/client/js/*.js --out-dir src/client",
-        "start": "cp .env.prod .env && node dist/server/server.js",
+        "start": "cp .env.prod .env && node server/server.js",
         "debug": "ndb server.js",
         "init": "sh scripts/mongo/init.sh",
         "import": "sh scripts/mongo/import.sh",
@@ -71,8 +71,8 @@
     },
     "devDependencies": {
         "dot-prop": "^5.3.0",
-        "eslint": "^7.12.1",
-        "eslint-config-prettier": "^6.14.0",
+        "eslint": "^7.13.0",
+        "eslint-config-prettier": "^6.15.0",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^3.1.4",
         "jest": "^26.6.1",

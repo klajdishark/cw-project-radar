@@ -1,4 +1,3 @@
-/* eslint-disable */
 //
 // IMPORTS
 //
@@ -176,7 +175,7 @@ if (radarSection) {
             filterBlips(filterTags)
 
             // 4) show the current filter list in the UI
-            updateFilterList(document.getElementById('jrctagsfilter'), filterTags, getName)
+            updateFilterList(filterTags, getName)
 
             // 5) link up the radar and tables to make it dynamic
             linkupRadar()
@@ -192,6 +191,7 @@ if (radarSection) {
         })
         .catch((err) => {
             showAlert('error', err)
+            console.error(err)
         })
 }
 
